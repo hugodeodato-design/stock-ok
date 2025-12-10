@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="48" fill="#0f172a"/>
+  <circle cx="136" cy="136" r="64" fill="#2563eb"/>
+  <text x="50%" y="60%" font-size="96" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-weight="700" text-anchor="middle">MRDPS</text>
+  <text x="50%" y="80%" font-size="36" fill="#aeb8c2" font-family="Arial, Helvetica, sans-serif" font-weight="600" text-anchor="middle">27</text>
+</svg>

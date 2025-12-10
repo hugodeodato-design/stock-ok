@@ -1,0 +1,24 @@
+{
+  "name": "mrdpstock-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "axios": "^1.4.0",
+    "lucide-react": "^0.268.0",
+    "bcryptjs": "^2.4.3",
+    "uuid": "^9.0.0",
+    "xlsx": "^0.18.5",
+    "file-saver": "^2.0.5"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.0.0"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "mrdpstock",
+  "version": "1.0.0",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "build:frontend": "cd frontend && npm run build",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:electron\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:electron": "electron .",
+    "build:electron": "electron-builder --win --x64",
+    "build": "npm run build:frontend && npm run build:electron",
+    "dist": "electron-builder --win --x64"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.0.0"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "build": {
+    "appId": "com.mrdps.stock",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "frontend/dist/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "icon.png"
+    },
+    "nsis": {
+      "oneClick": true
+    }
+  }
+}

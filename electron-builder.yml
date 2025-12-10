@@ -1,0 +1,18 @@
+appId: com.mrdps.mrdps27
+productName: MRDPS 27
+directories:
+  output: dist_electron
+  buildResources: electron/assets
+files:
+  - frontend/dist/**
+  - electron/**
+win:
+  target:
+    - nsis
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: MRDPS 27
