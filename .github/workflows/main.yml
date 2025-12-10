@@ -18,37 +18,32 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: "npm"
 
+      # Installation sans lockfile
       - name: Install root dependencies
-        run: npm ci
+        run: npm install
 
       - name: Install frontend dependencies
         run: |
           cd frontend
-          npm ci
+          npm install
 
       - name: Build frontend (Vite)
         working-directory: ./frontend
         run: npm run build
 
-      - name: Build Electron (electron-builder)
+      - name: Build Electron app
         env:
-          # Empêche electron-builder d'essayer de publier (évite GH_TOKEN)
-          ELECTRON_SKIP_PUBLISH: 'true'
-        run: |
-          # Build complet : frontend déjà généré ci-dessus
-          npm run build
-        # augmenter la mémoire si tu rencontres des erreurs liées à la construction :
-        # shell: bash -l {0}
+          ELECTRON_SKIP_PUBLISH: "true"
+        run: npm run build
 
-      - name: Show dist contents (debug)
+      - name: Show dist contents
         if: always()
         run: |
           echo "Contenu du dossier dist :"
-          ls -la dist || dir dist
+          Get-ChildItem dist
 
-      - name: Upload Windows artifact
+      - name: Upload Windows build
         uses: actions/upload-artifact@v4
         with:
           name: MRDPS27_Windows
