@@ -1,17 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path'
 
+// Configuration compatible Electron build
 export default defineConfig({
-  base: './',
   plugins: [react()],
+  base: './', // <<--- OBLIGATOIRE pour que Electron charge correctement /assets/*
   build: {
     outDir: 'dist',
-    emptyOutDir: true
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src')
-    }
   }
 })
