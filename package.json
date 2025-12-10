@@ -1,39 +1,39 @@
 {
-  "name": "mrdpstock",
+  "name": "mrdps27",
   "version": "1.0.0",
-  "private": true,
+  "description": "Logiciel MRDPS27 - Gestion de stock",
+  "author": "Hugo Deodato",
   "main": "main.js",
   "scripts": {
+    "dev": "concurrently \"npm:start-electron\" \"npm:dev-front\"",
+    "start-electron": "electron .",
+    "dev-front": "cd frontend && npm run dev",
     "build:frontend": "cd frontend && npm run build",
-    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:electron\"",
-    "dev:frontend": "cd frontend && npm run dev",
-    "dev:electron": "electron .",
-    "build:electron": "electron-builder --win --x64",
-    "build": "npm run build:frontend && npm run build:electron",
-    "dist": "electron-builder --win --x64"
-  },
-  "devDependencies": {
-    "electron": "^30.0.0",
-    "electron-builder": "^24.0.0"
+    "build": "npm run build:frontend && electron-builder --win --x64",
+    "win": "npm run build"
   },
   "dependencies": {
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.0",
+    "electron": "^30.0.0"
+  },
+  "devDependencies": {
+    "electron-builder": "^24.0.0"
   },
   "build": {
     "appId": "com.mrdps.stock",
+    "productName": "MRDPS Stock",
+    "files": [
+      "main.js",
+      "package.json",
+      "assets/**/*",
+      "frontend/dist/**/*"
+    ],
     "directories": {
       "output": "dist"
     },
-    "files": [
-      "**/*",
-      "frontend/dist/**/*"
-    ],
     "win": {
       "target": "nsis",
-      "icon": "icon.png"
-    },
-    "nsis": {
-      "oneClick": true
+      "icon": "assets/icon.png"
     }
   }
 }
