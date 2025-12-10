@@ -1,0 +1,56 @@
+name: Build Windows App
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "npm"
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Build frontend (Vite)
+        working-directory: ./frontend
+        run: npm run build
+
+      - name: Build Electron (electron-builder)
+        env:
+          # Empêche electron-builder d'essayer de publier (évite GH_TOKEN)
+          ELECTRON_SKIP_PUBLISH: 'true'
+        run: |
+          # Build complet : frontend déjà généré ci-dessus
+          npm run build
+        # augmenter la mémoire si tu rencontres des erreurs liées à la construction :
+        # shell: bash -l {0}
+
+      - name: Show dist contents (debug)
+        if: always()
+        run: |
+          echo "Contenu du dossier dist :"
+          ls -la dist || dir dist
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MRDPS27_Windows
+          path: dist/
+          if-no-files-found: error
