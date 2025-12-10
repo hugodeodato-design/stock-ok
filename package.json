@@ -13,10 +13,10 @@
     "win": "npm run build"
   },
   "dependencies": {
-    "concurrently": "^8.2.0",
-    "electron": "^30.0.0"
+    "concurrently": "^8.2.0"
   },
   "devDependencies": {
+    "electron": "^30.0.0",
     "electron-builder": "^24.0.0"
   },
   "build": {
